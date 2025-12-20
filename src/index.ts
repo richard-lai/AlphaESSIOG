@@ -42,7 +42,14 @@ const main = async () => {
   console.log(' ');
 };
 
-main();
+main().catch((error) => {
+  console.error(`Error in main: ${error.message}`.red);
+  console.error(error);
+});
+
 cron.schedule('*/5 * * * *', () => {
-  main();
+  main().catch((error) => {
+    console.error(`Error in scheduled main: ${error.message}`.red);
+    console.error(error);
+  });
 });
